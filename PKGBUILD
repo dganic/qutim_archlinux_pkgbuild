@@ -3,17 +3,16 @@
 
 pkgname=qutim-0.2.80.00-meta-git
 pkgver=20110519
-pkgrel=1
+pkgrel=5
 pkgdesc="Multiplatform instant messenger. (0.3 beta version) GIT repository. Unstable version for developers."
 arch=('i686' 'x86_64')
 url="http://qutim.org"
 license=('GPL 2')
-depends=('qt>=4.7' 'openssl' 'libxss' 'gnutls' 'zlib' 'libidn' 'qca-ossl' 'qca'  'cyrus-sasl' 'cyrus-sasl-plugins' 'attica' )
+depends=('qt>=4.7' 'openssl' 'libxss' 'gnutls' 'zlib' 'libidn' 'qca-ossl' 'qca'  'cyrus-sasl' 'cyrus-sasl-plugins' 'attica' 'sdl' 'sdl_mixer' 'aspell' )
 makedepends=('gcc' 'make' 'cmake' 'git' 'pkgconfig' 'libpurple')
 conflicts=(qutim-0.3-meta-git, qutim-meta-git)
 provides=(qutim-0.3-meta-git, qutim-meta-git)
 replaces=()
-#_gitroot="git://gitorious.org/qutim/qutim-meta.git"
 _gitroot="git://github.com/euroelessar/qutim.git"
 _gitname="qutim"
 build() {
@@ -26,7 +25,7 @@ build() {
 	cd $_gitname
   fi
 	git submodule update --init --recursive
-#	git submodule foreach --recursive "git pull origin master"
+	git submodule foreach --recursive "git pull origin master"
 	[ -d build ] || mkdir build
 	cd build
 	msg "Creating temporary build directory..."
